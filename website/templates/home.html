@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todos App</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.6.2/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="container mx-auto mt-6 px-1">
+    <h1 class="text-xl font-bold px-2">Todos</h1>
+    <form method="POST">
+      <div class="form-control w-full max-w-xs">
+        <label class="label">
+          <span class="label-text">Todo</span>
+        </label>
+        <input
+          type="text"
+          placeholder="Enter a todo"
+          class="input input-bordered w-full max-w-xs"
+          name="description"
+        />
+      </div>
+      <div class="form-control w-full max-w-xs">
+        <label class="label">
+          <span class="label-text">Deadline</span>
+        </label>
+        <input
+          type="datetime-local"
+          class="input input-bordered w-full max-w-xs"
+          name="deadline"
+        />
+      </div>
+      <button class="btn btn-success btn-wide mt-6" type="submit">
+        Submit
+      </button>
+    </form>
+
+    <div class="overflow-x-auto my-6">
+      <table class="table">
+        <!-- head -->
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Deadline</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- row -->
+          {% for todo in todos %}
+          <tr class="hover">
+            <td>{{todo[1]}}</td>
+            <td>{{todo[2]}}</td>
+            <th>
+              <form method="POST">
+                <input type="number" name="id" hidden value="{{todo[0]}}" />
+                <button class="btn btn-ghost btn-xs">Delete</button>
+              </form>
+            </th>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
